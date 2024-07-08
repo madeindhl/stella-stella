@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>STELLA</title>
+
+	<style type="text/css">
+		html,body,div{margin:0;padding:0;border:0}*{box-sizing:border-box}@media (max-width:480px),(max-height:480px){html{font-size:1px}}@media (min-width:481px) and (min-height:481px){html{font-size:2px}}@font-face{font-family:"ocr-b";src:url(ENOCRB10.ttf) format("truetype");font-weight:400}body{width:100vw;height:100vh;background-color:#000;display:flex;justify-content:center;align-items:center;font-family:ocr-b,ocr-b-std,monospace}#frame-wrapper{width:100vmin;height:100vmin;padding:5vmin}#frame-wrapper #frame{position:relative;width:100%;height:100%;padding:2%}#frame-wrapper #frame #design{border:solid #fff 1rem;position:relative;width:100%;height:100%}#frame-wrapper #frame #design *{position:absolute;box-sizing:content-box}#frame-wrapper #frame #design #hours,#frame-wrapper #frame #design #minutes,#frame-wrapper #frame #design #seconds{border:solid #fff 1rem;overflow:hidden}#frame-wrapper #frame #description-wrapper{position:absolute;bottom:0;left:0;width:100%;height:2%;display:flex;align-items:center;justify-content:center}#frame-wrapper #frame #description-wrapper #description{font-size:1vmin;color:#fff}.hidden,.hidden::after{visibility:hidden}
+	</style>
+	<style type="text/css">
+		body{--color-hour-0:#EAD296;--color-minute-0:#EAD296;--color-second-0:#FFFFFF;--color-second-1:#CE112D}
+	</style>
+	<style type="text/css">
+		#hours{z-index:3}#minutes{z-index:1}#seconds{z-index:2}#hours{top:calc(0% - 1rem);left:calc(0% - 1rem);width:100%;height:100%}#hours .block{fill:#000;stroke:#FFF;stroke-width:1rem;vector-effect:non-scaling-stroke}#hours .block.on{fill:var(--color-hour-0)}#minutes{top:calc(0% - 1rem);left:calc(0% - 1rem);width:100%;height:100%}#minutes .block{border:solid #fff 1rem;width:calc(6.25% - 0.9375rem);height:calc(6.25% - 0.9375rem);background-color:#000}#minutes .block.row-0{top:calc((6.25% - 0.9375rem + 1rem) * 0 - 1rem)}#minutes .block.col-0{left:calc((6.25% - 0.9375rem + 1rem) * 0 - 1rem)}#minutes .block.row-1{top:calc((6.25% - 0.9375rem + 1rem) * 1 - 1rem)}#minutes .block.col-1{left:calc((6.25% - 0.9375rem + 1rem) * 1 - 1rem)}#minutes .block.row-2{top:calc((6.25% - 0.9375rem + 1rem) * 2 - 1rem)}#minutes .block.col-2{left:calc((6.25% - 0.9375rem + 1rem) * 2 - 1rem)}#minutes .block.row-3{top:calc((6.25% - 0.9375rem + 1rem) * 3 - 1rem)}#minutes .block.col-3{left:calc((6.25% - 0.9375rem + 1rem) * 3 - 1rem)}#minutes .block.row-4{top:calc((6.25% - 0.9375rem + 1rem) * 4 - 1rem)}#minutes .block.col-4{left:calc((6.25% - 0.9375rem + 1rem) * 4 - 1rem)}#minutes .block.row-5{top:calc((6.25% - 0.9375rem + 1rem) * 5 - 1rem)}#minutes .block.col-5{left:calc((6.25% - 0.9375rem + 1rem) * 5 - 1rem)}#minutes .block.row-6{top:calc((6.25% - 0.9375rem + 1rem) * 6 - 1rem)}#minutes .block.col-6{left:calc((6.25% - 0.9375rem + 1rem) * 6 - 1rem)}#minutes .block.row-7{top:calc((6.25% - 0.9375rem + 1rem) * 7 - 1rem)}#minutes .block.col-7{left:calc((6.25% - 0.9375rem + 1rem) * 7 - 1rem)}#minutes .block.row-8{top:calc((6.25% - 0.9375rem + 1rem) * 8 - 1rem)}#minutes .block.col-8{left:calc((6.25% - 0.9375rem + 1rem) * 8 - 1rem)}#minutes .block.row-9{top:calc((6.25% - 0.9375rem + 1rem) * 9 - 1rem)}#minutes .block.col-9{left:calc((6.25% - 0.9375rem + 1rem) * 9 - 1rem)}#minutes .block.row-10{top:calc((6.25% - 0.9375rem + 1rem) * 10 - 1rem)}#minutes .block.col-10{left:calc((6.25% - 0.9375rem + 1rem) * 10 - 1rem)}#minutes .block.row-11{top:calc((6.25% - 0.9375rem + 1rem) * 11 - 1rem)}#minutes .block.col-11{left:calc((6.25% - 0.9375rem + 1rem) * 11 - 1rem)}#minutes .block.row-12{top:calc((6.25% - 0.9375rem + 1rem) * 12 - 1rem)}#minutes .block.col-12{left:calc((6.25% - 0.9375rem + 1rem) * 12 - 1rem)}#minutes .block.row-13{top:calc((6.25% - 0.9375rem + 1rem) * 13 - 1rem)}#minutes .block.col-13{left:calc((6.25% - 0.9375rem + 1rem) * 13 - 1rem)}#minutes .block.row-14{top:calc((6.25% - 0.9375rem + 1rem) * 14 - 1rem)}#minutes .block.col-14{left:calc((6.25% - 0.9375rem + 1rem) * 14 - 1rem)}#minutes .block.row-15{top:calc((6.25% - 0.9375rem + 1rem) * 15 - 1rem)}#minutes .block.col-15{left:calc((6.25% - 0.9375rem + 1rem) * 15 - 1rem)}#minutes .block.on{background-color:var(--color-minute-0)}#seconds{top:calc(3.125% - 0.96875rem);left:calc(3.125% - 0.96875rem);width:calc(93.75% - 0.0625rem);height:calc(93.75% - 0.0625rem)}#seconds .block{border:1rem solid #FFF;background:#000}#seconds .block.size-1{width:calc(3.3333333333% + 0.0333333333rem - 1rem);height:calc(3.3333333333% + 0.0333333333rem - 1rem)}#seconds .block.size-2{width:calc(6.6666666667% + 0.0666666667rem - 1rem);height:calc(6.6666666667% + 0.0666666667rem - 1rem)}#seconds .block.size-3{width:calc(10% + 0.1rem - 1rem);height:calc(10% + 0.1rem - 1rem)}#seconds .block.size-4{width:calc(13.3333333333% + 0.1333333333rem - 1rem);height:calc(13.3333333333% + 0.1333333333rem - 1rem)}#seconds .block.size-5{width:calc(16.6666666667% + 0.1666666667rem - 1rem);height:calc(16.6666666667% + 0.1666666667rem - 1rem)}#seconds .block.size-6{width:calc(20% + 0.2rem - 1rem);height:calc(20% + 0.2rem - 1rem)}#seconds .block.size-7{width:calc(23.3333333333% + 0.2333333333rem - 1rem);height:calc(23.3333333333% + 0.2333333333rem - 1rem)}#seconds .block.size-8{width:calc(26.6666666667% + 0.2666666667rem - 1rem);height:calc(26.6666666667% + 0.2666666667rem - 1rem)}#seconds .block.size-9{width:calc(30% + 0.3rem - 1rem);height:calc(30% + 0.3rem - 1rem)}#seconds .block.size-10{width:calc(33.3333333333% + 0.3333333333rem - 1rem);height:calc(33.3333333333% + 0.3333333333rem - 1rem)}#seconds .block.size-11{width:calc(36.6666666667% + 0.3666666667rem - 1rem);height:calc(36.6666666667% + 0.3666666667rem - 1rem)}#seconds .block.size-12{width:calc(40% + 0.4rem - 1rem);height:calc(40% + 0.4rem - 1rem)}#seconds .block.size-13{width:calc(43.3333333333% + 0.4333333333rem - 1rem);height:calc(43.3333333333% + 0.4333333333rem - 1rem)}#seconds .block.size-14{width:calc(46.6666666667% + 0.4666666667rem - 1rem);height:calc(46.6666666667% + 0.4666666667rem - 1rem)}#seconds .block.size-15{width:calc(50% + 0.5rem - 1rem);height:calc(50% + 0.5rem - 1rem)}#seconds .block.top{top:-1rem}#seconds .block.bot{bottom:-1rem}#seconds .block.left{left:-1rem}#seconds .block.right{right:-1rem}#seconds .block.on.color-0{background-color:var(--color-second-0)}#seconds .block.on.color-1{background-color:var(--color-second-1)}
+	</style>
+</head>
+<body>
+	<div id="frame-wrapper">
+		<div id="frame">
+			<div id="design" class="stella">
+				<div id="hours">
+					<svg viewbox="-1000 -1000 2000 2000" preserveAspectRatio="none">
+						<polygon class="block hour-0" points="0,0 0,-848 70,-162"></polygon>
+						<polygon class="block hour-1" points="0,0 70,-162 402,-402 157,-71"></polygon>
+						<polygon class="block hour-2" points="0,0 157,-71 562,0"></polygon>
+						<polygon class="block hour-3" points="0,0 562,0 157,71"></polygon>
+						<polygon class="block hour-4" points="0,0 157,71 402,402 70,162"></polygon>
+						<polygon class="block hour-5" points="0,0 70,162 0,848"></polygon>
+						<polygon class="block hour-6" points="0,0 0,848 -70,162"></polygon>
+						<polygon class="block hour-7" points="0,0 -70,162 -402,402 -157,71"></polygon>
+						<polygon class="block hour-8" points="0,0 -157,71 -562,0"></polygon>
+						<polygon class="block hour-9" points="0,0 -562,0 -157,-71"></polygon>
+						<polygon class="block hour-10" points="0,0 -157,-71 -402,-402 -70,-162"></polygon>
+						<polygon class="block hour-11" points="0,0 -70,-162 0,-848"></polygon>
+					</svg>
+				</div>
+				<div id="minutes">
+					<div class="block minute-0 row-0 col-8"></div>
+					<div class="block minute-1 row-0 col-9"></div>
+					<div class="block minute-2 row-0 col-10"></div>
+					<div class="block minute-3 row-0 col-11"></div>
+					<div class="block minute-4 row-0 col-12"></div>
+					<div class="block minute-5 row-0 col-13"></div>
+					<div class="block minute-6 row-0 col-14"></div>
+					<div class="block minute-7 row-0 col-15"></div>
+					<div class="block minute-8 row-1 col-15"></div>
+					<div class="block minute-9 row-2 col-15"></div>
+					<div class="block minute-10 row-3 col-15"></div>
+					<div class="block minute-11 row-4 col-15"></div>
+					<div class="block minute-12 row-5 col-15"></div>
+					<div class="block minute-13 row-6 col-15"></div>
+					<div class="block minute-14 row-7 col-15"></div>
+					<div class="block minute-15 row-8 col-15"></div>
+					<div class="block minute-16 row-9 col-15"></div>
+					<div class="block minute-17 row-10 col-15"></div>
+					<div class="block minute-18 row-11 col-15"></div>
+					<div class="block minute-19 row-12 col-15"></div>
+					<div class="block minute-20 row-13 col-15"></div>
+					<div class="block minute-21 row-14 col-15"></div>
+					<div class="block minute-22 row-15 col-15"></div>
+					<div class="block minute-23 row-15 col-14"></div>
+					<div class="block minute-24 row-15 col-13"></div>
+					<div class="block minute-25 row-15 col-12"></div>
+					<div class="block minute-26 row-15 col-11"></div>
+					<div class="block minute-27 row-15 col-10"></div>
+					<div class="block minute-28 row-15 col-9"></div>
+					<div class="block minute-29 row-15 col-8"></div>
+					<div class="block minute-30 row-15 col-7"></div>
+					<div class="block minute-31 row-15 col-6"></div>
+					<div class="block minute-32 row-15 col-5"></div>
+					<div class="block minute-33 row-15 col-4"></div>
+					<div class="block minute-34 row-15 col-3"></div>
+					<div class="block minute-35 row-15 col-2"></div>
+					<div class="block minute-36 row-15 col-1"></div>
+					<div class="block minute-37 row-15 col-0"></div>
+					<div class="block minute-38 row-14 col-0"></div>
+					<div class="block minute-39 row-13 col-0"></div>
+					<div class="block minute-40 row-12 col-0"></div>
+					<div class="block minute-41 row-11 col-0"></div>
+					<div class="block minute-42 row-10 col-0"></div>
+					<div class="block minute-43 row-9 col-0"></div>
+					<div class="block minute-44 row-8 col-0"></div>
+					<div class="block minute-45 row-7 col-0"></div>
+					<div class="block minute-46 row-6 col-0"></div>
+					<div class="block minute-47 row-5 col-0"></div>
+					<div class="block minute-48 row-4 col-0"></div>
+					<div class="block minute-49 row-3 col-0"></div>
+					<div class="block minute-50 row-2 col-0"></div>
+					<div class="block minute-51 row-1 col-0"></div>
+					<div class="block minute-52 row-0 col-0"></div>
+					<div class="block minute-53 row-0 col-1"></div>
+					<div class="block minute-54 row-0 col-2"></div>
+					<div class="block minute-55 row-0 col-3"></div>
+					<div class="block minute-56 row-0 col-4"></div>
+					<div class="block minute-57 row-0 col-5"></div>
+					<div class="block minute-58 row-0 col-6"></div>
+					<div class="block minute-59 row-0 col-7"></div>
+				</div>
+				<div id="seconds">
+					<div class="block second-0 size-15 top right color-0"></div>
+					<div class="block second-1 size-15 bot right color-1"></div>
+					<div class="block second-2 size-15 bot left color-0"></div>
+					<div class="block second-3 size-15 top left color-1"></div>
+					<div class="block second-4 size-14 top right color-1"></div>
+					<div class="block second-5 size-14 bot right color-0"></div>
+					<div class="block second-6 size-14 bot left color-1"></div>
+					<div class="block second-7 size-14 top left color-0"></div>
+					<div class="block second-8 size-13 top right color-0"></div>
+					<div class="block second-9 size-13 bot right color-1"></div>
+					<div class="block second-10 size-13 bot left color-0"></div>
+					<div class="block second-11 size-13 top left color-1"></div>
+					<div class="block second-12 size-12 top right color-1"></div>
+					<div class="block second-13 size-12 bot right color-0"></div>
+					<div class="block second-14 size-12 bot left color-1"></div>
+					<div class="block second-15 size-12 top left color-0"></div>
+					<div class="block second-16 size-11 top right color-0"></div>
+					<div class="block second-17 size-11 bot right color-1"></div>
+					<div class="block second-18 size-11 bot left color-0"></div>
+					<div class="block second-19 size-11 top left color-1"></div>
+					<div class="block second-20 size-10 top right color-1"></div>
+					<div class="block second-21 size-10 bot right color-0"></div>
+					<div class="block second-22 size-10 bot left color-1"></div>
+					<div class="block second-23 size-10 top left color-0"></div>
+					<div class="block second-24 size-9 top right color-0"></div>
+					<div class="block second-25 size-9 bot right color-1"></div>
+					<div class="block second-26 size-9 bot left color-0"></div>
+					<div class="block second-27 size-9 top left color-1"></div>
+					<div class="block second-28 size-8 top right color-1"></div>
+					<div class="block second-29 size-8 bot right color-0"></div>
+					<div class="block second-30 size-8 bot left color-1"></div>
+					<div class="block second-31 size-8 top left color-0"></div>
+					<div class="block second-32 size-7 top right color-0"></div>
+					<div class="block second-33 size-7 bot right color-1"></div>
+					<div class="block second-34 size-7 bot left color-0"></div>
+					<div class="block second-35 size-7 top left color-1"></div>
+					<div class="block second-36 size-6 top right color-1"></div>
+					<div class="block second-37 size-6 bot right color-0"></div>
+					<div class="block second-38 size-6 bot left color-1"></div>
+					<div class="block second-39 size-6 top left color-0"></div>
+					<div class="block second-40 size-5 top right color-0"></div>
+					<div class="block second-41 size-5 bot right color-1"></div>
+					<div class="block second-42 size-5 bot left color-0"></div>
+					<div class="block second-43 size-5 top left color-1"></div>
+					<div class="block second-44 size-4 top right color-1"></div>
+					<div class="block second-45 size-4 bot right color-0"></div>
+					<div class="block second-46 size-4 bot left color-1"></div>
+					<div class="block second-47 size-4 top left color-0"></div>
+					<div class="block second-48 size-3 top right color-0"></div>
+					<div class="block second-49 size-3 bot right color-1"></div>
+					<div class="block second-50 size-3 bot left color-0"></div>
+					<div class="block second-51 size-3 top left color-1"></div>
+					<div class="block second-52 size-2 top right color-1"></div>
+					<div class="block second-53 size-2 bot right color-0"></div>
+					<div class="block second-54 size-2 bot left color-1"></div>
+					<div class="block second-55 size-2 top left color-0"></div>
+					<div class="block second-56 size-1 top right color-0"></div>
+					<div class="block second-57 size-1 bot right color-1"></div>
+					<div class="block second-58 size-1 bot left color-0"></div>
+					<div class="block second-59 size-1 top left color-1"></div>
+				</div>
+			</div>
+			<div id="description-wrapper">
+				<span id="description">
+					DESIGNED BY DHL / 2022-12-01 AM 0:00
+				</span>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+	const GEN_TIME_INTERVAL = 20 // ms
+
+	const blocks = document.querySelectorAll('.block');
+	const hidden = [];
+
+	const init = () => {
+		for(let block of blocks) {
+			block.classList.add('hidden');
+		}
+
+		for(let i = 0; i < blocks.length; i++){
+			hidden.push(i);
+		}
+	}
+
+	const structure = () => {
+
+		const sel = Math.floor(Math.random() * hidden.length);
+		const idx = hidden[sel];
+		blocks[idx].classList.remove('hidden');
+
+		hidden.splice(sel, 1);
+
+		if(hidden.length === 0) return;
+
+		setTimeout(() => structure(), GEN_TIME_INTERVAL);
+	} 
+
+	init();
+	structure();
+</script>
+	<script type="text/javascript">
+const HOUR = 'hour';
+const MINUTE = 'minute';
+const SECOND = 'second';
+
+const identify = (type, num) => {
+	return `.${type}-${num}`;
+}
+
+const fill = (identifier) => {
+
+	const blocks = document.querySelectorAll(identifier);
+
+	for(const block of blocks) block.classList.add('on');
+}
+
+const clear = (identifier) => {
+	const blocks = document.querySelectorAll(identifier);
+
+	for(const block of blocks) block.classList.remove('on');
+}
+
+const getTimeOffset = (ho = 0, mo = 0, so = 0) => {
+	const time = new Date();
+
+	let hour = time.getHours() + ho;
+	let minute = time.getMinutes() + mo;
+	let second = time.getSeconds() + so;
+
+	minute += parseInt(second / 60);
+	second = second % 60;
+
+	hour += parseInt(minute / 60);
+	minute = minute % 60;
+
+	hour = hour % 24;
+
+	return { hour, minute, second };
+}
+
+const clearClockwise = (type, cur) => {
+
+	if(cur === 60) return;
+	if(type === HOUR && cur === 12) return;
+
+	clear(identify(type, cur));
+	setTimeout(() => clearClockwise(type, cur+1), 50);
+}
+
+const fillTime = (hour, minute, second) => {
+
+	hour = hour % 12;
+
+	for(let i = 0; i < hour;   i++) fill(identify(HOUR,   i));
+	for(let i = 0; i < minute; i++) fill(identify(MINUTE, i));
+	for(let i = 0; i < second; i++) fill(identify(SECOND, i));
+
+	if(hour === 0 && minute === 0 && second === 0) {
+		for(let i = 0; i < 12; i++) fill(identify(HOUR,   i));
+	}
+
+	if(minute === 0 && second === 0) {
+		for(let i = 0; i < 60; i++) fill(identify(MINUTE, i));
+	}
+	if(second === 0) {
+		for(let i = 0; i < 60; i++) fill(identify(SECOND, i));
+	}
+
+	clearClockwise(HOUR, hour)
+	clearClockwise(MINUTE, minute)
+	clearClockwise(SECOND, second)
+}
+</script>
+<script type="text/javascript">
+description = (year, month, date, hour, minute) => {
+
+	hour   = (''+hour  ).padStart(2, '0')
+	minute = (''+minute).padStart(2, '0')
+
+	const content = `DHL (b.1988 - ) / STELLA / ${year}-${month}-${date} ${hour}:${minute}`;
+
+	const description = document.querySelector('#description');
+	description.innerHTML = content;
+}
+	</script>
+	<script type="text/javascript">
+		
+let _year, _month, _date, _hour, _minute, _second;
+
+const tick = (ho = 0, mo = 0, so = 0) => {
+
+	const time = new Date();
+
+    time.setHours(time.getHours() + ho);
+    time.setMinutes(time.getMinutes() + mo);
+    time.setSeconds(time.getSeconds() + so);
+
+	const year   = time.getFullYear();
+	const month  = time.getMonth() + 1;
+	const date   = time.getDate();
+	const hour   = time.getHours();
+	const minute = time.getMinutes();
+	const second = time.getSeconds();
+
+	if(_hour !== hour || _minute !== minute || _second !== second) {
+		fillTime(hour, minute, second);
+	}
+
+	if(_year !== year || _month !== month || _date !== date || _hour !== hour || _minute !== minute) {
+		description(year, month, date, hour, minute);
+	}
+
+	_year   = year;
+	_month  = month;
+	_date   = date;
+	_hour   = hour;
+	_minute = minute;
+	_second = second;
+}
+
+setInterval(tick, 10);
+tick();
+</script>
+</body>
+</html>
+
